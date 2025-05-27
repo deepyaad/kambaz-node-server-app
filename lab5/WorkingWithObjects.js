@@ -3,6 +3,7 @@ const assignment = {
     description: "Create a NodeJS server with ExpressJS",
     due: "2021-10-10", completed: false, score: 0,
   };
+  
 const module = {
     id: "mod-123",
     name: "React Components",
