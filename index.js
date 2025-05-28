@@ -42,5 +42,8 @@ Lab5(app);
 UserRoutes(app);
 CourseRoutes(app);
 ModuleRoutes(app);
+app.get("/env", (req, res) => {
+ res.send(process.env);
+});
 
 app.listen(process.env.PORT || 4000)
