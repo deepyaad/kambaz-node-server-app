@@ -23,7 +23,7 @@ const sessionOptions = {
 if (process.env.NODE_ENV !== "development") {
   sessionOptions.proxy = true;
   sessionOptions.cookie = {
-    sameSite: "none",
+    sameSite: "lax", // changed from none
     secure: true,
     domain: process.env.NODE_SERVER_DOMAIN,
   };
@@ -38,8 +38,3 @@ CourseRoutes(app);
 ModuleRoutes(app);
 
 app.listen(process.env.PORT || 4000)
-
-/*
-
-
-*/
