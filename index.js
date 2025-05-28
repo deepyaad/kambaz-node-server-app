@@ -9,6 +9,14 @@ import session from "express-session";
 import "dotenv/config";
 
 
+console.log({
+  NODE_ENV: process.env.NODE_ENV,
+  PORT: process.env.PORT,
+  SESSION_SECRET: process.env.SESSION_SECRET,
+  NETLIFY_URL: process.env.NETLIFY_URL,
+  NODE_SERVER_DOMAIN: process.env.NODE_SERVER_DOMAIN,
+});
+
 
 
 const app = express()
