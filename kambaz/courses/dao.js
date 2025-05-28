@@ -27,3 +27,12 @@ export function updateCourse(courseId, courseUpdates) {
   return course;
 }
 
+export function findCoursesForEnrolledUser(userId) {
+  const { enrollments, courses } = Database;
+  const userEnrollments = enrollments.filter(
+    (enrollment) => enrollment.user === userId
+  );
+  return userEnrollments.map((enrollment) =>
+    courses.find((course) => course._id === enrollment.course)
+  );
+}
