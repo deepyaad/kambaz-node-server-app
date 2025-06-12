@@ -4,6 +4,7 @@ import Lab5 from "./lab5/index.js";
 import UserRoutes from './kambaz/users/routes.js';
 import CourseRoutes from "./kambaz/courses/routes.js";
 import ModuleRoutes from "./kambaz/modules/routes.js";
+import AssignmentRoutes from './kambaz/assignments/routes.js';
 import cors from 'cors';
 import session from "express-session";
 import "dotenv/config";
@@ -42,7 +43,9 @@ if (process.env.NODE_ENV !== "development") {
     domain: process.env.NODE_SERVER_DOMAIN,
   };
 }
-app.use(session(sessionOptions));
+app.use(
+  session(sessionOptions)
+);
 app.use(express.json());
 
 Hello(app)
@@ -50,6 +53,7 @@ Lab5(app);
 UserRoutes(app);
 CourseRoutes(app);
 ModuleRoutes(app);
+AssignmentRoutes(app);
 app.get("/env", (req, res) => {
  res.send(process.env);
 });

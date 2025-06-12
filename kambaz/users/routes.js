@@ -4,6 +4,7 @@ import * as enrollmentsDao from "../enrollments/dao.js";
 
 
 export default function UserRoutes(app) {
+
   const createCourse = (req, res) => {
     const currentUser = req.session["currentUser"];
     const newCourse = courseDao.createCourse(req.body);
@@ -11,6 +12,7 @@ export default function UserRoutes(app) {
     res.json(newCourse);
   };
   app.post("/api/users/current/courses", createCourse);
+  
   const createUser = (req, res) => { };
   const deleteUser = (req, res) => { };
   const findAllUsers = (req, res) => { };
@@ -25,7 +27,7 @@ export default function UserRoutes(app) {
     res.json(currentUser);
    };
   
-  const signup = (req, res) => {
+  const signup = async (req, res) => {
     const user = dao.findUserByUsername(req.body.username);
     if (user) {
       res.status(400).json(
@@ -37,16 +39,19 @@ export default function UserRoutes(app) {
     res.json(currentUser);
   };
   
-  const signin = (req, res) => { 
+  const signin = async (req, res) => {
     const { username, password } = req.body;
     const currentUser = dao.findUserByCredentials(username, password);
     if (currentUser) {
       req.session["currentUser"] = currentUser;
       res.json(currentUser);
-    } else {
-      res.status(401).json({ message: "Unable to login. Try again later." });
+    }
+    else{
+      res.status(401).json({ message: "Invalid username or password" });
+      return;
     }
   };
+
   
    const signout = (req, res) => {
     req.session.destroy();

@@ -1,8 +1,10 @@
 import * as dao from "./dao.js";
 import * as courseDao from "../courses/dao.js";
 import * as modulesDao from "../modules/dao.js";
+import * as assignmentsDao from "../assignments/dao.js"
 
 export default function CourseRoutes(app) {
+  
   app.post("/api/courses/:courseId/modules", (req, res) => {
     const { courseId } = req.params;
     const module = {
@@ -13,11 +15,26 @@ export default function CourseRoutes(app) {
     res.send(newModule);
   });
 
-
+  app.post("/api/courses/:courseId/assignments", (req, res) => {
+    const { courseId } = req.params;
+    const assignment = {
+      ...req.body,
+      course: courseId,
+    };
+    const newAssignment = assignmentsDao.createAssignment(assignment);
+    res.send(newAssignment);
+  });
+  
   app.get("/api/courses/:courseId/modules", (req, res) => {
     const { courseId } = req.params;
     const modules = modulesDao.findModulesForCourse(courseId);
     res.json(modules);
+  });
+
+  app.get("/api/courses/:courseId/assignments", (req, res) => {
+    const { courseId } = req.params;
+    const assignments = assignmentsDao.findAssignmentsForCourse(courseId);
+    res.json(assignments);
   });
 
   app.put("/api/courses/:courseId", (req, res) => {
@@ -32,10 +49,12 @@ export default function CourseRoutes(app) {
     const status = dao.deleteCourse(courseId);
     res.send(status);
   });
+  
   app.get("/api/courses", (req, res) => {
     const courses = dao.findAllCourses();
     res.send(courses);
   });
+  
   const findCoursesForEnrolledUser = (req, res) => {
     let { userId } = req.params;
     if (userId === "current") {
@@ -51,4 +70,19 @@ export default function CourseRoutes(app) {
   };
   app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
 
+  app.post("/api/users/:userId/courses/:courseId/enroll", (req, res) => {
+  const { courseId } = req.params;
+  const { userId, action } = req.body;
+
+  try {
+    courseDao.updateCourseEnrollment(courseId, userId, action);
+    res.sendStatus(200);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+
+
 }
+

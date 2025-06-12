@@ -2,8 +2,6 @@ import Database from "../database/index.js";
 import { v4 as uuidv4 } from "uuid";
 
 
-
-
 export function deleteCourse(courseId) {
   const { courses, enrollments } = Database;
   Database.courses = courses.filter((course) => course._id !== courseId);
@@ -35,4 +33,25 @@ export function findCoursesForEnrolledUser(userId) {
   return userEnrollments.map((enrollment) =>
     courses.find((course) => course._id === enrollment.course)
   );
+}
+
+
+export function updateCourseEnrollment(courseId, userId, action){
+  const { enrollments } = Database;
+  const enrollment = enrollments.find(
+    (enrollment) => enrollment.course === courseId && enrollment.user === userId
+  );
+  if (action === "enroll") {
+    if (!enrollment) {
+      enrollments.push({ course: courseId, user: userId });
+    }
+  }
+  else {
+    if (enrollment) {
+      Database.enrollments = enrollments.filter(
+        (enrollment) => !(enrollment.course === courseId && enrollment.user === userId)
+      );
+    }
+    return null;
+  }
 }
