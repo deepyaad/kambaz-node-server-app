@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import model from "./model";  // Keep this line
+import model from "./model.js";  // Keep this line
 
 export function deleteCourse(courseId) {
   return model.deleteOne({ _id: courseId });
