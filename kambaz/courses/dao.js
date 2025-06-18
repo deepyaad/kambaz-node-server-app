@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import model from "./model.js";  // Keep this line
+import model from "./model.js";  
 
 export function deleteCourse(courseId) {
   return model.deleteOne({ _id: courseId });
@@ -10,7 +10,7 @@ export function findAllCourses() {
 }
 
 export function createCourse(course) {
-  return model.create(course);  // Fixed the undefined variable 'newCourse'
+  return model.create(course);
 }
 
 export function updateCourse(courseId, courseUpdates) {
