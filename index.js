@@ -5,6 +5,8 @@ import UserRoutes from './kambaz/users/routes.js';
 import CourseRoutes from "./kambaz/courses/routes.js";
 import ModuleRoutes from "./kambaz/modules/routes.js";
 import AssignmentRoutes from './kambaz/assignments/routes.js';
+import QuizRoutes from './kambaz/quizzes/routes.js';
+import GradeRoutes from './kambaz/grades/routes.js';
 import cors from 'cors';
 import session from "express-session";
 import "dotenv/config";
@@ -54,6 +56,9 @@ UserRoutes(app);
 CourseRoutes(app);
 ModuleRoutes(app);
 AssignmentRoutes(app);
+QuizRoutes(app);
+GradeRoutes(app);
+
 app.get("/env", (req, res) => {
  res.send(process.env);
 });
