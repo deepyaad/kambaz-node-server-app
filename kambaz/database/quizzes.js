@@ -3,8 +3,8 @@ export default [
     "_id": "Q101",
     "title": "HTML Basics Quiz",
     "course": "RS101",
-    "available": "2025-06-10T00:00:00", // Example: Available from June 10, 2025
-    "until": "2025-06-25T23:59:59",    // Example: Available until June 25, 2025
+    "available": "2025-06-10T00:00:00", 
+    "until": "2025-06-25T23:59:59",    
     "due": "2025-06-26T23:59:00",
     "description": "A quiz covering fundamental concepts in HTML.",
     "points": 100,
@@ -13,7 +13,7 @@ export default [
     "quizType": "Graded Quiz",
     "assignmentGroup": "Quizzes",
     "shuffleAnswers": true,
-    "timeLimit": 20, // in minutes
+    "timeLimit": 20, 
     "multipleAttempts": false,
     "howManyAttempts": 1,
     "showCorrectAnswers": "After Due Date",
@@ -26,8 +26,8 @@ export default [
     "_id": "Q102",
     "title": "CSS Styling Quiz",
     "course": "RS101",
-    "available": "2025-05-13T00:00:00", // Example: Available from May 13, 2025 (past)
-    "until": "2025-06-10T23:59:59",    // Example: Closed as of June 10, 2025
+    "available": "2025-05-13T00:00:00", 
+    "until": "2025-06-10T23:59:59",    
     "due": "2025-06-11T23:59:00",
     "description": "Test your knowledge of CSS properties and selectors.",
     "points": 120,
@@ -49,7 +49,7 @@ export default [
     "_id": "Q103",
     "title": "JavaScript Fundamentals",
     "course": "RS101",
-    "available": "2025-06-20T00:00:00", // Example: Available in the future
+    "available": "2025-06-20T00:00:00", 
     "until": "2025-07-05T23:59:59",
     "due": "2025-07-15T23:59:00",
     "description": "An exam covering basic JavaScript concepts and syntax.",
@@ -72,8 +72,8 @@ export default [
     "_id": "Q201",
     "title": "Aerodynamics Principles Quiz",
     "course": "RS102",
-    "available": "2024-05-27T00:00:00", // Past date, but until date might make it closed
-    "until": "2024-06-10T23:59:59", // Past date, making it closed
+    "available": "2024-05-27T00:00:00", 
+    "until": "2024-06-10T23:59:59",
     "due": "2024-06-20T23:59:00",
     "description": "A quiz covering fundamental concepts in aerodynamics.",
     "points": 80,
@@ -95,7 +95,7 @@ export default [
     "_id": "Q202",
     "title": "Fluid Dynamics Quiz",
     "course": "RS102",
-    "available": "2025-06-06T00:00:00", // Currently available
+    "available": "2025-06-06T00:00:00", 
     "until": "2025-06-28T23:59:59",
     "due": "2025-06-30T23:59:00",
     "description": "Analyze the flow of air over an aircraft wing.",
@@ -105,8 +105,8 @@ export default [
     "quizType": "Graded Survey",
     "assignmentGroup": "Quizzes",
     "shuffleAnswers": false,
-    "timeLimit": null, // No time limit for survey
-    "multipleAttempts": false, // Surveys are usually single attempt
+    "timeLimit": null, 
+    "multipleAttempts": false, 
     "howManyAttempts": 1,
     "showCorrectAnswers": "Never",
     "accessCode": "",
@@ -118,13 +118,13 @@ export default [
     "_id": "Q203",
     "title": "Thermal Analysis Quiz",
     "course": "RS102",
-    "available": "2025-06-16T00:00:00", // Currently available
+    "available": "2025-06-16T00:00:00", 
     "until": "2025-06-22T23:59:59",
     "due": "2025-06-23T23:59:00",
     "description": "Analyze the thermal properties and heating of materials.",
     "points": 110,
     "numQuestions": 10,
-    "published": false, // This will be hidden from students by default
+    "published": false, 
     "quizType": "Ungraded Survey",
     "assignmentGroup": "Quizzes",
     "shuffleAnswers": true,
@@ -141,7 +141,7 @@ export default [
     "_id": "Q301",
     "title": "Structural Design Quiz",
     "course": "RS103",
-    "available": "2025-05-06T00:00:00", // Past due, Closed (Past Due)
+    "available": "2025-05-06T00:00:00", 
     "until": "2025-05-12T23:59:59",
     "due": "2025-05-13T23:59:00",
     "description": "Design the structural components for a spacecraft.",
@@ -164,13 +164,13 @@ export default [
     "_id": "Q302",
     "title": "Orbital Mechanics Quiz",
     "course": "RS103",
-    "available": "2025-06-16T00:00:00", // Available now
+    "available": "2025-06-16T00:00:00", 
     "until": "2025-06-22T23:59:59",
     "due": "2025-06-23T23:59:00",
     "description": "Calculate the orbital parameters of a spacecraft.",
     "points": 140,
     "numQuestions": 14,
-    "published": false, // This will be hidden from students by default
+    "published": false, 
     "quizType": "Practice Quiz",
     "assignmentGroup": "Exams",
     "shuffleAnswers": false,
