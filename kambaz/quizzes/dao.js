@@ -1,6 +1,19 @@
 import Database from "../database/index.js";
 import { v4 as uuidv4 } from 'uuid';
 
+export function findAllQuizzes() {
+  const { quizzes } = Database;
+  return quizzes;
+}
+
+export function findQuizById(quizId) {
+  const { quizzes, questions } = Database;
+  const quiz = quizzes.find((q) => q._id === quizId);
+  if (!quiz) return null;
+  const quizQuestions = questions.filter((q) => q.quizId === quizId);
+  return { ...quiz, questions: quizQuestions };
+}
+
 export function deleteQuiz(quizId) {
  const { quizzes } = Database;
  Database.quizzes = quizzes.filter((quiz) => quiz._id !== quizId);
