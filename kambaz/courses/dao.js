@@ -1,57 +1,49 @@
-import Database from "../database/index.js";
 import { v4 as uuidv4 } from "uuid";
-
+import courseModel from "./model.js";      
+import enrollmentModel from "../enrollments/model.js";  
 
 export function deleteCourse(courseId) {
-  const { courses, enrollments } = Database;
-  Database.courses = courses.filter((course) => course._id !== courseId);
-  Database.enrollments = enrollments.filter(
-    (enrollment) => enrollment.course !== courseId
-);}
+  return courseModel.deleteOne({ _id: courseId });
+}
 
 export function findAllCourses() {
-  return Database.courses;
+  return courseModel.find();
 }
+
 export function createCourse(course) {
-  const newCourse = { ...course, _id: uuidv4() };
-  Database.courses = [...Database.courses, newCourse];
-  return newCourse;
+  if (!course._id) course._id = uuidv4();
+  return courseModel.create(course);
 }
 
 export function updateCourse(courseId, courseUpdates) {
-  const { courses } = Database;
-  const course = courses.find((course) => course._id === courseId);
-  Object.assign(course, courseUpdates);
-  return course;
-}
-
-export function findCoursesForEnrolledUser(userId) {
-  const { enrollments, courses } = Database;
-  const userEnrollments = enrollments.filter(
-    (enrollment) => enrollment.user === userId
-  );
-  return userEnrollments.map((enrollment) =>
-    courses.find((course) => course._id === enrollment.course)
-  );
+  return courseModel.updateOne({ _id: courseId }, { $set: courseUpdates });
 }
 
 
-export function updateCourseEnrollment(courseId, userId, action){
-  const { enrollments } = Database;
-  const enrollment = enrollments.find(
-    (enrollment) => enrollment.course === courseId && enrollment.user === userId
-  );
+export async function findCoursesForEnrolledUser(userId) {
+  const enrollments = await enrollmentModel.find({ user: userId });
+  const courseIds = enrollments.map(e => e.course);
+  return courseModel.find({ _id: { $in: courseIds } });
+}
+
+export async function updateCourseEnrollment(courseId, userId, action) {
   if (action === "enroll") {
-    if (!enrollment) {
-      enrollments.push({ course: courseId, user: userId });
+    const existing = await enrollmentModel.findOne({ course: courseId, user: userId });
+    if (!existing) {
+      return enrollmentModel.create({ course: courseId, user: userId });
     }
+  } else if (action === "unenroll") {
+    return enrollmentModel.deleteOne({ course: courseId, user: userId });
   }
-  else {
-    if (enrollment) {
-      Database.enrollments = enrollments.filter(
-        (enrollment) => !(enrollment.course === courseId && enrollment.user === userId)
-      );
-    }
-    return null;
-  }
+  return null;
 }
+
+
+
+
+
+
+
+
+
+

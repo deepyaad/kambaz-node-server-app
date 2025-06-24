@@ -1,16 +1,5 @@
-import Database from "../database/index.js"; 
-
-export function findGradesForUserAndCourse(userId, courseId) {
-  const { grades } = Database; 
-
-  return grades.filter(
-    (grade) => grade.student === userId 
-  );
-}
+import model from "./model.js";
 
 export function findGradeByStudentAndQuiz(studentId, quizId) {
-  const { grades } = Database;
-  return grades.find(
-    (grade) => grade.student === studentId && grade.quizId === quizId
-  );
+  return model.findOne({ student: studentId, quizId: quizId });
 }

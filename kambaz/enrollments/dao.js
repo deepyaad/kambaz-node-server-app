@@ -1,19 +1,21 @@
-import Database from "../database/index.js";
+import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
-
 export function enrollUserInCourse(userId, courseId) {
-  const { enrollments } = Database;
-  enrollments.push({ _id: uuidv4(), user: userId, course: courseId });
+  const newEnrollment = {
+    _id: uuidv4(),
+    user: userId,
+    course: courseId,
+    status: "ENROLLED",
+    enrollmentDate: new Date(),
+  };
+  return model.create(newEnrollment);
 }
 
 export function unenrollUserInCourse(userId, courseId) {
-  const { enrollments } = Database;
-  const index = enrollments.findIndex(
-    (enrollment) => enrollment.user === userId && enrollment.course === courseId
-  );
+  return model.deleteOne({ user: userId, course: courseId });
 }
 
 export function findAllEnrollments() {
-  return Database.enrollments
+  return model.find();
 }

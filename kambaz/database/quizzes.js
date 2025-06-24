@@ -7,7 +7,7 @@ export default [
     "until": "2025-06-25T23:59:59",    
     "due": "2025-06-26T23:59:00",
     "description": "A quiz covering fundamental concepts in HTML.",
-    "points": 100,
+    "points": 200,
     "numQuestions": 10,
     "published": true,
     "quizType": "Graded Quiz",
